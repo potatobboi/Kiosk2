@@ -65,6 +65,7 @@ public class Kiosk {
 
     public void showIntro() { // 인삿말
         System.out.println();
+        System.out.println("======================================");
         System.out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.\n");
     }
@@ -93,6 +94,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int burgerChoice = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         int burgerInfo = burgerChoice - 1;
         Product selectBurger = burgerList.get(burgerInfo);
@@ -103,6 +105,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int check = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         if (check == 1) {
             order.addBasket(selectBurger);
@@ -132,6 +135,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int drinkChoice = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         int drinkInfo = drinkChoice - 1;
         Product selectDrink = drinkList.get(drinkInfo);
@@ -142,6 +146,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int check = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         if (check == 1) {
             order.addBasket(selectDrink);
@@ -170,6 +175,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int beerChoice = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         int beerInfo = beerChoice - 1;
         Product selcetBeer = beerList.get(beerInfo);
@@ -180,6 +186,7 @@ public class Kiosk {
         System.out.print("메뉴 선택: ");
         int check = scanner.nextInt();
         scanner.nextLine();
+        System.out.println();
 
         if (check == 1) {
             order.addBasket(selcetBeer);
@@ -196,7 +203,6 @@ public class Kiosk {
         System.out.println("아래와 같이 주문 하시겠습니까?");
         System.out.println();
         System.out.println("[ Orders ]");
-        System.out.println();
 
         ArrayList<Product> basket = order.getBasket();
 
@@ -207,7 +213,6 @@ public class Kiosk {
 
         System.out.println();
         System.out.println("[ Total ]");
-        System.out.println();
         System.out.println("W " + order.totalPrice());
         System.out.println();
         System.out.println("1. 주문      2. 메뉴판\n");
@@ -227,7 +232,7 @@ public class Kiosk {
         int orderNumber = order.getOrderNumber();
         System.out.println("주문이 완료되었습니다.\n");
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
-        System.out.println("(3초 후 메뉴판으로 돌아갑니다.");
+        System.out.println("(3초 후 메뉴판으로 돌아갑니다.)");
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -249,9 +254,9 @@ public class Kiosk {
 
         if (cancelNum == 1) {
             order.clearBasket();
-            System.out.println("진행하던 주문이 취소되었습니다.\n");
+            System.out.println("\n진행하던 주문이 취소되었습니다.\n");
         } else if (cancelNum == 2) {
-            System.out.println("주문을 유지하고 메뉴판으로 돌아갑니다.");
+            System.out.println("\n주문을 유지하고 메뉴판으로 돌아갑니다.");
         }
 
         Kioskmenu();
