@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Kiosk {
 
-    ArrayList<Menu> menulist = new ArrayList<>();
+    ArrayList<Menu> menuList = new ArrayList<>();
     ArrayList<Product> burgerList = new ArrayList<>();
     ArrayList<Product> drinkList = new ArrayList<>();
     ArrayList<Product> beerList = new ArrayList<>();
@@ -13,9 +13,9 @@ public class Kiosk {
     Scanner scanner = new Scanner(System.in);
 
     public void LoadMenu() {
-        menulist.add(new Menu("Burgers", "앵거스 비프 통살을 다져만든 버거"));
-        menulist.add(new Menu("Drinks", "매장에서 직접 만드는 음료"));
-        menulist.add(new Menu("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"));
+        menuList.add(new Menu("Burgers", "앵거스 비프 통살을 다져만든 버거"));
+        menuList.add(new Menu("Drinks", "매장에서 직접 만드는 음료"));
+        menuList.add(new Menu("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"));
 
         burgerList.add(new Product("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
         burgerList.add(new Product("Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
