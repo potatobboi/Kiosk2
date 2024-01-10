@@ -72,8 +72,8 @@ public class Kiosk {
 
     public void showMenu() { // 메뉴타이플 선택
         System.out.println("[ SHAKESHACK MENU ]");
-        for (int i = 0; i < menulist.size(); i++) {
-            Menu menu = menulist.get(i);
+        for (int i = 0; i < menuList.size(); i++) {
+            Menu menu = menuList.get(i);
             System.out.print((i + 1) + ". ");
             System.out.printf("%-15s  |  %s", menu.getName(), menu.getDetail());
             System.out.println();
