@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class Kiosk {
 
-    ArrayList<Menu> menuList = new ArrayList<>();
-    ArrayList<Product> burgerList = new ArrayList<>();
-    ArrayList<Product> drinkList = new ArrayList<>();
-    ArrayList<Product> beerList = new ArrayList<>();
-    Order order = new Order();
+    ArrayList<Menu> menuList = new ArrayList<>(); // 메인메뉴 리스트
+    ArrayList<Product> burgerList = new ArrayList<>(); // 버거 리스트 생성
+    ArrayList<Product> drinkList = new ArrayList<>(); // 음료 리스트 생성
+    ArrayList<Product> beerList = new ArrayList<>(); // 맥주 리스트 생성
+    Order order = new Order(); // Order 클래스의 메서드를 사용하기 위해서 변수
     Scanner scanner = new Scanner(System.in);
 
-    public void LoadMenu() {
+    public void LoadMenu() { // 각각 리스트에 메뉴넣기
         menuList.add(new Menu("Burgers", "앵거스 비프 통살을 다져만든 버거"));
         menuList.add(new Menu("Drinks", "매장에서 직접 만드는 음료"));
         menuList.add(new Menu("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"));
@@ -30,9 +30,9 @@ public class Kiosk {
         beerList.add(new Product("Tera", 4.0, "테라"));
     }
 
-    public void Kioskmenu() {
-        showIntro();
-        showMenu();
+    public void kioskMenu() { // 키오스크 메뉴
+        showIntro(); // 반복되는 인삿말
+        showMenu(); // 메뉴 불러오기
         System.out.println();
         System.out.println("[ ORDER MENU ]");
         System.out.println("4. Order    |   장나구니를 확인 후 주문합니다.");
@@ -42,28 +42,21 @@ public class Kiosk {
         scanner.nextLine();
 
         switch (menuChoice) {
-            case 1:
-                showBurgerMenu();
-                break;
-            case 2:
-                showDrinkMenu();
-                break;
-            case 3:
-                showBeerMenu();
-                break;
-            case 4:
-                showOrderMenu();
-                break;
-            case 5:
-                orderCancel();
-                break;
-            default:
-                System.out.println("1 ~ 6까지의 숫자만 입력가능합니다.");
-                break;
+            case 1 -> showBurgerMenu(); // 버거 메뉴판 보기
+
+            case 2 -> showDrinkMenu(); // 음료 메뉴판 보기
+
+            case 3 -> showBeerMenu(); // 맥주 메뉴판 보기
+
+            case 4 -> showOrderMenu(); // 장바구니 보기
+
+            case 5 -> orderCancel(); // 주문 취소하기
+
+            default -> System.out.println("1 ~ 5까지의 숫자만 입력가능합니다.");
         }
     }
 
-    public void showIntro() { // 인삿말
+    public void showIntro() { // 반복되는 인삿말을 메서드로
         System.out.println();
         System.out.println("======================================");
         System.out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
@@ -72,11 +65,11 @@ public class Kiosk {
 
     public void showMenu() { // 메뉴타이플 선택
         System.out.println("[ SHAKESHACK MENU ]");
-        for (int i = 0; i < menuList.size(); i++) {
-            Menu menu = menuList.get(i);
-            System.out.print((i + 1) + ". ");
-            System.out.printf("%-15s  |  %s", menu.getName(), menu.getDetail());
-            System.out.println();
+        for (int i = 0; i < menuList.size(); i++) { // 메뉴리스트의 size 만큼 반복해서
+            Menu menu = menuList.get(i); // menu 안에 넣기
+            System.out.print((i + 1) + ". "); // i는 0부터니까 +1 을 해주었습니다
+            System.out.printf("%-15s  |  %s", menu.getName(), menu.getDetail()); // printf 를 사용하여, 메뉴이름과, 설명넣기
+            System.out.println(); // 공백 추가
         }
     }
 
@@ -92,13 +85,13 @@ public class Kiosk {
 
         System.out.println();
         System.out.print("메뉴 선택: ");
-        int burgerChoice = scanner.nextInt();
+        int burgerChoice = scanner.nextInt(); // 버거 중에서 주문할 버거 선택
         scanner.nextLine();
         System.out.println();
 
-        int burgerInfo = burgerChoice - 1;
+        int burgerInfo = burgerChoice - 1; // 사용자가 선택한 숫자와 리스트의 숫자를 맞추기 위하여 -1
         Product selectBurger = burgerList.get(burgerInfo);
-        System.out.println("\" " + selectBurger.getName() + "    | W " + selectBurger.getPrice() + " | " + selectBurger.getDetail() + " \"");
+        System.out.printf("\" %-15s  | W %s | %s \"\n", selectBurger.getName(), selectBurger.getPrice(), selectBurger.getDetail());
         System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
         System.out.println("1. 확인     2. 취소\n");
 
@@ -116,7 +109,7 @@ public class Kiosk {
         } else {
             System.out.println("잘못된 숫자를 입력하셨습니다.");
         }
-        Kioskmenu();
+        kioskMenu();
 
     }
 
@@ -139,7 +132,7 @@ public class Kiosk {
 
         int drinkInfo = drinkChoice - 1;
         Product selectDrink = drinkList.get(drinkInfo);
-        System.out.println("\" " + selectDrink.getName() + "    | W " + selectDrink.getPrice() + " | " + selectDrink.getDetail() + " \"");
+        System.out.printf("\" %-15s  | W %s | %s \"\n", selectDrink.getName(), selectDrink.getPrice(), selectDrink.getDetail());
         System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
         System.out.println("1. 확인     2. 취소\n");
 
@@ -157,7 +150,7 @@ public class Kiosk {
         } else {
             System.out.println("잘못된 숫자를 입력하셨습니다.");
         }
-        Kioskmenu();
+        kioskMenu();
     }
 
 
@@ -179,7 +172,7 @@ public class Kiosk {
 
         int beerInfo = beerChoice - 1;
         Product selcetBeer = beerList.get(beerInfo);
-        System.out.println("\" " + selcetBeer.getName() + "    | W " + selcetBeer.getPrice() + " | " + selcetBeer.getDetail() + " \"");
+        System.out.printf("\" %-15s  | W %s | %s \"\n", selcetBeer.getName(), selcetBeer.getPrice(), selcetBeer.getDetail());
         System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
         System.out.println("1. 확인     2. 취소\n");
 
@@ -197,23 +190,23 @@ public class Kiosk {
         } else {
             System.out.println("잘못된 숫자를 입력하셨습니다.");
         }
-        Kioskmenu();
+        kioskMenu();
     }
-    public void showOrderMenu() {
+    public void showOrderMenu() { // 장바구니 보기
         System.out.println("아래와 같이 주문 하시겠습니까?");
         System.out.println();
         System.out.println("[ Orders ]");
 
-        ArrayList<Product> basket = order.getBasket();
+        ArrayList<Product> basket = order.getBasket(); // 바스켓을 생성하고 오더클래스안에 있는 바스켓으로 가져오기
 
         for (int i = 0; i < basket.size(); i++) {
             Product menu = basket.get(i);
-            System.out.println("\" " + menu.getName() + "    | W " + menu.getPrice() + " | " + menu.getDetail() + " \"");
+            System.out.printf("\" %-15s  | W %s | %s \"\n", menu.getName(), menu.getPrice(), menu.getDetail());
         }
 
         System.out.println();
         System.out.println("[ Total ]");
-        System.out.println("W " + order.totalPrice());
+        System.out.println("W " + order.totalPrice()); // 오더클래스안에 있는 총금액 가져오기
         System.out.println();
         System.out.println("1. 주문      2. 메뉴판\n");
         System.out.print("메뉴 선택: ");
@@ -224,7 +217,7 @@ public class Kiosk {
             orderComplete();
         } else if (check == 2) {
             System.out.println("메뉴판으로 돌아갑니다.");
-            Kioskmenu();
+            kioskMenu();
         }
     }
 
@@ -233,15 +226,15 @@ public class Kiosk {
         System.out.println("주문이 완료되었습니다.\n");
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
         System.out.println("(3초 후 메뉴판으로 돌아갑니다.)");
-        try {
+        try { // 3초 동안 멈추기 위해서 sleep 사용을 위해서 예외처리를 함
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println();
-        order.clearBasket();
-        order.setOrderNumber(orderNumber + 1);
-        Kioskmenu();
+        order.clearBasket(); // 주문 후 장바구니 비우기
+        order.setOrderNumber(orderNumber + 1); // 주문번호 1 늘리기
+        kioskMenu(); // 메인메뉴화면으로 돌아가기
     }
 
     public void orderCancel() {
@@ -253,12 +246,12 @@ public class Kiosk {
         scanner.nextLine();
 
         if (cancelNum == 1) {
-            order.clearBasket();
+            order.clearBasket(); // 장바구니 비우기
             System.out.println("\n진행하던 주문이 취소되었습니다.\n");
         } else if (cancelNum == 2) {
             System.out.println("\n주문을 유지하고 메뉴판으로 돌아갑니다.");
         }
 
-        Kioskmenu();
+        kioskMenu(); // 메인메뉴로 돌아가기
     }
 }
